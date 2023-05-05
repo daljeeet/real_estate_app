@@ -1,21 +1,35 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { registerUser } from "../redux/user/user.action";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { registerUser, resetData } from "../redux/auth/auth.action";
 
 const Signup = () => {
   const [userData, setUserData] = useState({email:"",name:"",password:""})
+  const {isAuth,signup_success} =  useSelector(val=>val.auth)
+  const dispatch = useDispatch()
+  let nav = useNavigate()
+  useEffect(()=>{
+    if(isAuth){
+      nav("/")
+    }
+    if(signup_success){
+      alert("signup Successful. Login Now")
+      nav("/login")
+    }
+    return ()=>{
+      dispatch(resetData())
+    }
+  },[isAuth,nav,signup_success,dispatch])
   const handleChange = (e)=>{
     setUserData({...userData, [e.target.name]:e.target.value});
   }
-  const dispatch = useDispatch()
   const handleRegister = (e)=>{
     e.preventDefault()
     dispatch(registerUser(userData))
   }
   return (
       <div className="m-auto pt-6 md:w-[60%]">
-        <h4 className="mb-10 text-center text-xl font-bold">Login Here:</h4>
+        <h4 className="mb-10 text-center text-xl font-bold">Register Here:</h4>
         <form className="border-2 flex flex-col p-10 w-[80%] m-auto" onSubmit={handleRegister}>
           <label
             className="border-[1px] border-gray-500 rounded-md my-2 p-2"

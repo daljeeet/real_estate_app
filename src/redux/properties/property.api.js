@@ -18,3 +18,12 @@ export const getSinglePropertyApi = async(id)=>{
         throw err
     }
 }
+
+export const getSearchedDataApi = async(data)=>{
+    try{
+        let res = await axios.get(`${baseUrl}/property?${data.srchtype}=${data.srchText}`)
+        return res
+    }catch(err){
+        throw err
+    }
+}

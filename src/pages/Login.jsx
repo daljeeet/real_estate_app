@@ -1,14 +1,27 @@
-import { useState } from "react"
-import { NavLink } from "react-router-dom"
-import { loginUser } from "../redux/user/user.action"
-import { useDispatch } from "react-redux"
+import { useEffect, useState } from "react"
+import { NavLink, useNavigate } from "react-router-dom"
+import { loginUser, resetData } from "../redux/auth/auth.action"
+import { useDispatch, useSelector } from "react-redux"
 
 const Login = () => {
   const [userData, setUserData] = useState({email:"",password:""})
+ const {isAuth,login_error} =  useSelector(val=>val.auth)
+ const dispatch = useDispatch()
+ const nav = useNavigate()
+ useEffect(()=>{
+  if(isAuth){
+    nav("/")
+  }
+  if(login_error){
+    alert("invalid Credentials")
+  }
+  return ()=>{
+    dispatch(resetData())
+  }
+ },[isAuth,nav,login_error,dispatch])
   const handleChange = (e)=>{
     setUserData({...userData, [e.target.name]:e.target.value})
   }
-  const dispatch = useDispatch()
   const handleLogin = (e)=>{
     e.preventDefault()
     dispatch(loginUser(userData))

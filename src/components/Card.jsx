@@ -11,7 +11,7 @@ const Card = ({data}) => {
         }else{
             setIsAvl(true)
         }
-    },[data?.booked_by])
+    },[])
     const nav = useNavigate()
     const handleDetails = (data)=>{
     if(isAvl){
@@ -26,7 +26,7 @@ const Card = ({data}) => {
         <p>({data.location})</p>
         <h3>Price: <span className='font-semibold'>₹{data.price}</span> </h3>
         <p className='my-2' >Type: <span className='font-semibold'>{data.type}</span> </p>
-        <p className={`${isAvl?"text-green-800":"text-red-500"} font-semibold`} >{isAvl?"Available":"Not-Available"}</p>
+        <p className={`${isAvl?"text-green-800":"text-red-500"} font-semibold`} >{isAvl?"Available":"Booked"}</p>
     </div>
   )
 }
