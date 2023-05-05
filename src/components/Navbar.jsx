@@ -15,7 +15,7 @@ const Navbar = () => {
   const [searchData, setSearchData] = useState({srchText:"",srchtype:""})
   useEffect(()=>{
     if(isAuth){
-      dispatch(getWishlist())
+      dispatch(getWishlist(userData.id))
       dispatch(getSellers(userData?.id))
     }
   },[isAuth,wishlistArr.length,sellerHistory.length])

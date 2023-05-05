@@ -50,13 +50,13 @@ const SinglePage = () => {
   }
   const addWishList = (data)=>{
     setIsLiked(true)
-    dispatch(addtoWishlist({...data,user_id:userData.id}))
+    dispatch(addtoWishlist({...data, user_id:userData.id}))
   }
   const removeWishList = (data)=>{
     setIsLiked(false)
     dispatch(removeFromWishlist(data.id))
   }
-  return (
+  return ( 
     <>
       <div className="flex justify-between items-center w-11/12 m-auto">
         <div className="">

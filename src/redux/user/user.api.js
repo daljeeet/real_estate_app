@@ -18,9 +18,9 @@ export const contactSellerApi = async(data)=>{
         throw err
     }
 }
-export const getWishlistApi = async()=>{
+export const getWishlistApi = async(id)=>{
     try{
-        let res = await axios.get(`${baseUrl}/wishlist`);
+        let res = await axios.get(`${baseUrl}/wishlist?user_id=${id}`);
         return res
     }catch(err){
         throw err

@@ -60,6 +60,7 @@ case REMOVE_SELLER_SUCCESS:{
       return { ...state };
     }
     case ADD_WISHLIST_SUCCESS: {
+      console.log(payload)
       return { ...state,wishlistArr:[payload,...state.wishlistArr] };
     }
     case REMOVE_WISHLIST_LOADING: {

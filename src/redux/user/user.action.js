@@ -70,10 +70,10 @@ export const  getSellers = (id)=>async(dispatch)=>{
     }
 }
 
-export const getWishlist = ()=>async(dispatch)=>{
+export const getWishlist = (id)=>async(dispatch)=>{
     dispatch({type:GET_WISHLIST_LOADING})
     try{
-        let res = await getWishlistApi()
+        let res = await getWishlistApi(id)
         dispatch({type:GET_WISHLIST_SUCCESS,payload:res.data})
     }catch(err){
         dispatch({type:GET_WISHLIST_ERROR})
